@@ -1,8 +1,8 @@
-import { Analytics } from '@vercel/analytics/next';
 import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { Analytics } from '@vercel/analytics/next';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
