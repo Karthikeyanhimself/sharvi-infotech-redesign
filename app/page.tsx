@@ -110,7 +110,7 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.2 }}
         >
           <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-[10px] sm:text-xs font-mono text-sap-300 uppercase tracking-wider">
-            Est. 2020 • Global SAP Partner
+            EST. 2020 • HYDERABAD • GLOBAL SAP PARTNER
           </div>
           {/* FLUID TYPOGRAPHY FIX: text-4xl on mobile -> text-8xl on desktop */}
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.1] mb-6 text-white">
@@ -274,7 +274,7 @@ const SolutionsDeepDive = () => {
           ENGINEERED FOR VELOCITY
         </motion.div>
         <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-          DETAILED <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">METHODOLOGIES</span>
+          DETAILED <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-100 via-yellow-300 to-yellow-600">METHODOLOGIES</span>
         </h2>
         <p className="text-slate-400 font-mono text-sm md:text-base max-w-2xl mx-auto">
           Comprehensive SAP ecosystems designed for scale. From initial blueprint to 24/7 automation support.
@@ -569,7 +569,7 @@ const Footer = () => {
             <div>
               <h4 className="text-white mb-4 uppercase tracking-wider">Contact</h4>
               <ul className="space-y-2">
-                <li>Vadlamudi, Andhra Pradesh</li>
+                <li>Hyderabad, Telangana</li>
                 <li><a href="mailto:careers@sharviinfotech.com" className="text-sap-400 hover:underline">careers@sharviinfotech.com</a></li>
               </ul>
             </div>
