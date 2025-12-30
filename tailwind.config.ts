@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-    darkMode: ["class"],
+    darkMode: "class", // FIX: Changed from ["class"] to "class"
     content: [
         "./pages/**/*.{js,ts,jsx,tsx,mdx}",
         "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -35,7 +35,6 @@ const config: Config = {
                 'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
                 'neon': '0 0 20px theme("colors.sap.500"), 0 0 60px theme("colors.accent.purple")',
             },
-            // --- ANIMATION SETTINGS ADDED HERE ---
             animation: {
                 marquee: 'marquee 25s linear infinite',
             },
