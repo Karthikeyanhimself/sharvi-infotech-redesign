@@ -3,6 +3,7 @@ import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Analytics } from '@vercel/analytics/react';
+import SmoothScroll from "@/app/components/ui/SmoothScroll"; // Import the new component
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -16,7 +17,6 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400"],
 });
 
-// UPDATED METADATA
 export const metadata: Metadata = {
   title: "Sharvi Infotech | Global SAP Services & Digital Transformation",
   description: "Accelerating SAP S/4HANA transformation with over 17 years of industry expertise. Specializing in Automotive, Manufacturing, and Mining sectors.",
@@ -36,7 +36,12 @@ export default function RootLayout({
       )}>
         {/* Noise overlay */}
         <div className="fixed inset-0 z-[9999] pointer-events-none opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-        {children}
+
+        {/* Wrap content in SmoothScroll */}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
+
         <Analytics />
       </body>
     </html>

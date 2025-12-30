@@ -5,7 +5,7 @@ import { Navbar } from "@/app/components/layout/Navbar";
 import { GlassCard } from "@/app/components/ui/GlassCard";
 import { MagneticButton } from "@/app/components/ui/MagneticButton";
 import { cn } from "@/lib/utils";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
 import {
@@ -16,8 +16,7 @@ import {
   FiLayers,
   FiTrendingUp,
   FiCheckCircle,
-  FiZap,
-  FiX
+  FiZap
 } from "react-icons/fi";
 import { SiSap } from "react-icons/si";
 
@@ -39,7 +38,8 @@ const SolutionSection = ({
   index: number
 }) => {
   return (
-    <section id={id} className="relative flex flex-col lg:flex-row gap-8 lg:gap-24 py-12 lg:py-24 border-t border-white/5">
+    // FIX ADDED: 'scroll-mt-28' ensures the Navbar doesn't cover the title when scrolling
+    <section id={id} className="scroll-mt-28 relative flex flex-col lg:flex-row gap-8 lg:gap-24 py-12 lg:py-24 border-t border-white/5">
       {/* Header: Sticky on Desktop, Static on Mobile */}
       <div className="lg:w-1/3 flex flex-col justify-start">
         <div className="relative lg:sticky lg:top-32">
@@ -112,10 +112,12 @@ const HeroSection = () => {
           <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-[10px] sm:text-xs font-mono text-sap-300 uppercase tracking-wider">
             EST. 2020 • HYDERABAD • GLOBAL SAP PARTNER
           </div>
-          {/* FLUID TYPOGRAPHY FIX: text-4xl on mobile -> text-8xl on desktop */}
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.1] mb-6 text-white">
             ACCELERATING<br />
-            <span className="text-transparent bg-clip-text bg-metro-gradient">SAP TRANSFORMATION</span>
+            {/* UPDATED: Cyan/Teal gradient to match 'Global Rollouts' accent */}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-teal-500">
+              SAP TRANSFORMATION
+            </span>
           </h1>
         </motion.div>
 
@@ -165,12 +167,14 @@ const ServicesBento = () => {
     show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 80 } },
   };
 
+  // FIX ADDED: Added 'href' to map cards to specific Deep Dive sections
   const services = [
     {
       title: "SAP Implementation",
       icon: <SiSap className="w-8 h-8 text-[#008FD3]" />,
       desc: "Integrating SAP ERP with Leading Practices methodology.",
       features: ["Project Analysis", "Implementation", "Training"],
+      href: "#impl-deep-dive",
       cols: "md:col-span-2",
       rows: "md:row-span-2"
     },
@@ -179,6 +183,7 @@ const ServicesBento = () => {
       icon: <FiLayers className="w-8 h-8 text-accent-purple" />,
       desc: "Seamless transition from ECC to S/4HANA.",
       features: ["Data Migration", "Zero Data Loss"],
+      href: "#mig-deep-dive",
       cols: "",
       rows: "md:row-span-2"
     },
@@ -187,6 +192,7 @@ const ServicesBento = () => {
       icon: <FiGlobe className="w-8 h-8 text-accent-cyan" />,
       desc: "Standardizing processes across borders.",
       features: ["Global Template", "Local Compliance"],
+      href: "#roll-deep-dive",
       cols: "",
       rows: ""
     },
@@ -195,6 +201,7 @@ const ServicesBento = () => {
       icon: <FiActivity className="w-8 h-8 text-sap-400" />,
       desc: "24/7 Application Management & Support.",
       features: ["Incident Mgmt", "Optimization"],
+      href: "#ams-deep-dive",
       cols: "md:col-span-2",
       rows: ""
     },
@@ -203,13 +210,15 @@ const ServicesBento = () => {
       icon: <FiTrendingUp className="w-8 h-8 text-emerald-400" />,
       desc: "Strategic integration for long-term goals.",
       features: ["Strategy", "Roadmaps"],
+      href: "#solutions", // Fallback to main section as no specific deep dive exists
       cols: "md:col-span-3",
       rows: ""
     },
   ]
 
+  // FIX ADDED: scroll-mt-28 added to section ID
   return (
-    <section id="expertise" className="py-20 lg:py-32 px-4 relative z-20 bg-sap-950">
+    <section id="expertise" className="scroll-mt-28 py-20 lg:py-32 px-4 relative z-20 bg-sap-950">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 lg:mb-20 text-center md:text-left">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-white">Our Expertise</h2>
@@ -225,7 +234,8 @@ const ServicesBento = () => {
         >
           {services.map((service, idx) => (
             <motion.div key={idx} variants={itemVariants} className={cn(service.cols, service.rows, "h-full")}>
-              <Link href="#solutions" className="block h-full">
+              {/* FIX ADDED: Link now uses service.href instead of generic #solutions */}
+              <Link href={service.href} className="block h-full">
                 <GlassCard hoverEffect className="h-full flex flex-col justify-between group relative overflow-hidden p-6 lg:p-8">
                   <div>
                     <div className="flex justify-between items-start mb-6">
@@ -262,7 +272,8 @@ const ServicesBento = () => {
 
 const SolutionsDeepDive = () => {
   return (
-    <div id="solutions" className="bg-sap-950 relative z-20">
+    // FIX ADDED: scroll-mt-28 added here too
+    <div id="solutions" className="scroll-mt-28 bg-sap-950 relative z-20">
       <div className="max-w-7xl mx-auto px-4 pt-20 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -390,25 +401,37 @@ const IndustryTicker = () => {
     "AUTOMOTIVE", "CHEMICALS", "INDUSTRIAL MANUFACTURING", "STEEL & CEMENT", "MINING", "E-MOBILITY"
   ];
 
+  // Duplicate content enough times to ensure seamless looping without gaps
+  const content = [...industries, ...industries, ...industries, ...industries];
+
   return (
-    <section id="industries" className="py-12 bg-sap-900 border-y border-white/5 overflow-hidden">
+    // FIX 1: 'scroll-mt-32' adds invisible padding so the Navbar doesn't cover the text when clicked
+    <section id="industries" className="scroll-mt-32 py-12 bg-sap-900 border-y border-white/5 overflow-hidden relative">
+
+      {/* Mask creates the fade effect on the edges */}
       <div className="flex max-w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-        <motion.div
-          animate={{ x: "-50%" }}
-          transition={{
-            duration: 30,
-            ease: "linear",
-            repeat: Infinity
-          }}
-          className="flex gap-8 sm:gap-16 whitespace-nowrap pr-16"
-        >
-          {[...industries, ...industries].map((ind, i) => (
-            <div key={i} className="flex items-center gap-4 text-2xl sm:text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/90 to-white/50">
+
+        {/* FIX 2: Pure CSS Animation (GPU) prevents the "stop-and-go" glitch */}
+        <div className="flex gap-16 animate-infinite-scroll whitespace-nowrap pr-16">
+          {content.map((ind, i) => (
+            <div key={i} className="flex-shrink-0 flex items-center gap-4 text-2xl sm:text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/90 to-white/50">
               {ind} <span className="text-sap-500">•</span>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
+
+      {/* Define the smooth animation directly here */}
+      <style jsx>{`
+        .animate-infinite-scroll {
+          animation: scroll 60s linear infinite;
+          will-change: transform; /* Hint to browser to use GPU */
+        }
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); } /* Move exactly half-way then loop */
+        }
+      `}</style>
     </section>
   );
 };
@@ -420,7 +443,15 @@ const WhyUsComparer = () => {
     offset: ["start end", "end start"],
   });
 
-  const dividerX = useTransform(scrollYProgress, [0.2, 0.8], ["0%", "100%"]);
+  // NEW: Add spring physics to make the slider glide smoothly
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  // Use the smoothed progress instead of the raw scrollYProgress
+  const dividerX = useTransform(smoothProgress, [0.2, 0.8], ["0%", "100%"]);
 
   return (
     <section id="overview" ref={targetRef} className="py-20 lg:py-32 relative z-20 bg-sap-900 overflow-hidden">
