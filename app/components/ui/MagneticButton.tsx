@@ -1,10 +1,14 @@
 'use client';
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, HTMLMotionProps } from "framer-motion";
 import { useRef } from "react";
 import { cn } from "@/lib/utils";
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> { }
+// FIX: Change 'React.ButtonHTMLAttributes' to 'HTMLMotionProps<"button">'
+// This resolves the conflict between HTML drag events and Framer gestures.
+interface Props extends HTMLMotionProps<"button"> {
+    children: React.ReactNode;
+}
 
 export const MagneticButton = ({ children, className, ...props }: Props) => {
     const ref = useRef<HTMLButtonElement>(null);
@@ -17,7 +21,10 @@ export const MagneticButton = ({ children, className, ...props }: Props) => {
 
     const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
         const { clientX, clientY } = e;
-        const { height, width, left, top } = ref.current!.getBoundingClientRect();
+        // Safety check to ensure ref exists
+        if (!ref.current) return;
+
+        const { height, width, left, top } = ref.current.getBoundingClientRect();
         const middleX = clientX - (left + width / 2);
         const middleY = clientY - (top + height / 2);
         x.set(middleX * 0.2); // Magnetic strength
