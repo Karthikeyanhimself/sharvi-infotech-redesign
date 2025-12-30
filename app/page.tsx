@@ -158,7 +158,7 @@ const ServicesBento = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 80 } },
+    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 80 } },
   };
 
   const services = [
