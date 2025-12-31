@@ -45,9 +45,7 @@ const config: Config = {
                 },
             },
             fontFamily: {
-                // UPDATED: Now using Outfit (Clean, Tech Sans-Serif)
                 heading: ["var(--font-outfit)", "sans-serif"],
-
                 fancy: ["var(--font-pinyon)", "cursive"],
                 body: ["var(--font-manrope)", "sans-serif"],
             },

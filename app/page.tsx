@@ -20,8 +20,6 @@ import {
 } from "react-icons/fi";
 import { SiSap } from "react-icons/si";
 
-// --- SUB-COMPONENTS ---
-
 const SolutionSection = ({
   id,
   title,
@@ -51,18 +49,15 @@ const SolutionSection = ({
             <span className="absolute -top-6 -left-4 text-6xl lg:text-9xl font-heading italic font-bold text-white/5 select-none pointer-events-none -z-10">
               0{index}
             </span>
-
             <div className="w-12 h-12 lg:w-16 lg:h-16 bg-sap-900/50 backdrop-blur-xl rounded-2xl flex items-center justify-center text-2xl lg:text-3xl text-sap-400 mb-4 lg:mb-6 border border-white/10 shadow-[0_0_30px_rgba(59,130,246,0.2)]">
               {icon}
             </div>
             <h2 className="font-heading italic text-4xl lg:text-6xl font-bold mb-4 lg:mb-6 tracking-tight text-white leading-tight">{title}</h2>
             <p className="font-body font-medium text-base lg:text-lg text-slate-400 leading-relaxed">{subtitle}</p>
-
             <div className="absolute left-6 lg:left-8 top-full h-[50vh] w-px bg-gradient-to-b from-sap-500/50 to-transparent mt-8 hidden lg:block"></div>
           </motion.div>
         </div>
       </div>
-
       <div className="lg:w-2/3 pt-4 lg:pt-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -75,8 +70,7 @@ const SolutionSection = ({
       </div>
     </section>
   );
-};
-
+}
 const ProcessCard = ({ title, desc, stepNum }: { title: string, desc: string, stepNum: string }) => (
   <div className="group relative pl-6 lg:pl-8 pb-8 border-l border-white/10 last:border-0 hover:border-sap-500/50 transition-colors duration-300">
     <div className="absolute -left-[5px] top-0 w-2.5 h-2.5 bg-sap-950 border border-white/30 rounded-full group-hover:bg-sap-500 group-hover:border-sap-400 group-hover:shadow-[0_0_10px_theme('colors.sap.500')] transition-all duration-300"></div>
@@ -90,9 +84,6 @@ const ProcessCard = ({ title, desc, stepNum }: { title: string, desc: string, st
     </GlassCard>
   </div>
 );
-
-// --- MAIN SECTIONS ---
-
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 pt-20">
@@ -104,35 +95,23 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* BADGE */}
           <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-[10px] sm:text-xs font-body font-bold text-emerald-400 uppercase tracking-wider">
             EST. 2020 • HYDERABAD • GLOBAL SAP PARTNER
           </div>
-
           <h1 className="leading-[1.1] mb-6 text-white text-center">
-            {/* TOP LINE */}
             <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tighter block mb-4 md:mb-6 uppercase">
               Accelerating
             </span>
-
-            {/* BOTTOM LINE: STATIC & ALIGNED */}
             <div className="flex flex-wrap justify-center items-baseline gap-x-3 sm:gap-x-5 text-3xl sm:text-6xl md:text-7xl lg:text-8xl">
-
-              {/* 1. SAP (Heading Font) */}
-              {/* Added 'pr-2' to prevent the letter P from being cut off */}
               <span className="font-heading font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-lime-400 pr-2">
                 SAP
               </span>
-
-              {/* 2. TRANSFORMATION (Italianno Font) */}
               <span className="font-italianno text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-lime-400 pr-2 pb-1">
                 Transformation
               </span>
-
             </div>
           </h1>
         </motion.div>
-
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -143,7 +122,6 @@ const HeroSection = () => {
           From <strong className="text-white">S/4HANA migrations</strong> to <strong className="text-white">Global Rollouts</strong>,
           we engineer success.
         </motion.p>
-
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -165,12 +143,10 @@ const ServicesBento = () => {
     hidden: { opacity: 0 },
     show: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
-
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 80 } },
   };
-
   const services = [
     {
       title: "SAP Implementation",
@@ -226,7 +202,6 @@ const ServicesBento = () => {
           <h2 className="font-heading italic text-5xl lg:text-7xl font-bold mb-4 text-white">Our Expertise</h2>
           <p className="font-body text-base lg:text-lg text-sap-300">Precision engineering and strategic insight.</p>
         </div>
-
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -245,10 +220,8 @@ const ServicesBento = () => {
                         <FiArrowRight size={24} />
                       </div>
                     </div>
-
                     <h3 className="font-heading font-bold text-2xl lg:text-3xl mb-3 text-white">{service.title}</h3>
                     <p className="font-body text-sm text-slate-400 mb-6 leading-relaxed">{service.desc}</p>
-
                     {service.features && (
                       <div className="space-y-2 border-t border-white/5 pt-4">
                         {service.features.map((feat, i) => (
@@ -270,7 +243,6 @@ const ServicesBento = () => {
     </section>
   )
 }
-
 const SolutionsDeepDive = () => {
   return (
     <div id="solutions" className="scroll-mt-28 bg-sap-950 relative z-20">
@@ -285,41 +257,23 @@ const SolutionsDeepDive = () => {
           ENGINEERED FOR VELOCITY
         </motion.div>
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
-          {/* HEADING CONTAINER */}
           <h2 className="leading-[1.1] mb-8 text-center">
-
-            {/* FLEX ROW: Aligns both words on the same baseline */}
             <div className="flex flex-wrap justify-center items-baseline gap-x-3 sm:gap-x-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
-
-              {/* 1. DETAILED (Serif Italic) 
-          - pr-2: prevents the italic 'D' from being cut on the right
-      */}
               <span className="font-heading font-bold italic tracking-tighter text-white pr-2">
                 DETAILED
               </span>
-
-              {/* 2. METHODOLOGIES (Script)
-          - pr-2: prevents the 's' tail from being cut
-          - pb-2: adds padding at the bottom so the loops of 'g' and 'y' aren't chopped
-      */}
               <span className="font-italianno text-yellow-400 pr-2 pb-2">
                 Methodologies
               </span>
 
             </div>
           </h2>
-
-          {/* CAPTION
-      - Added 'mt-2' for a little extra breathing room if needed
-  */}
           <p className="font-body text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto mt-2">
             Comprehensive SAP ecosystems designed for scale. From initial blueprint to 24/7 automation support.
           </p>
         </div>
       </div>
-
       <div className="max-w-7xl mx-auto px-4 pb-20">
-        {/* 1. Implementation */}
         <SolutionSection
           id="impl-deep-dive"
           index={1}
@@ -334,8 +288,6 @@ const SolutionsDeepDive = () => {
             <ProcessCard stepNum="04" title="Go-Live" desc="24/7 command center support." />
           </div>
         </SolutionSection>
-
-        {/* 2. Migrations */}
         <SolutionSection
           id="mig-deep-dive"
           index={2}
@@ -361,8 +313,6 @@ const SolutionsDeepDive = () => {
             </div>
           </div>
         </SolutionSection>
-
-        {/* 3. Rollouts */}
         <SolutionSection
           id="roll-deep-dive"
           index={3}
@@ -387,8 +337,6 @@ const SolutionsDeepDive = () => {
             </GlassCard>
           </div>
         </SolutionSection>
-
-        {/* 4. AMS */}
         <SolutionSection
           id="ams-deep-dive"
           index={4}
@@ -426,9 +374,7 @@ const IndustryTicker = () => {
   const industries = [
     "AUTOMOTIVE", "CHEMICALS", "INDUSTRIAL MANUFACTURING", "STEEL & CEMENT", "MINING", "E-MOBILITY"
   ];
-
   const content = [...industries, ...industries, ...industries, ...industries];
-
   return (
     <section id="industries" className="scroll-mt-32 py-12 bg-sap-900 border-y border-white/5 overflow-hidden relative">
       <div className="flex max-w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
@@ -440,7 +386,6 @@ const IndustryTicker = () => {
           ))}
         </div>
       </div>
-
       <style jsx>{`
         .animate-infinite-scroll {
           animation: scroll 60s linear infinite;
@@ -461,23 +406,18 @@ const WhyUsComparer = () => {
     target: targetRef,
     offset: ["start 80%", "end 20%"],
   });
-
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 300,
     damping: 30,
     restDelta: 0.001
   });
-
   const dividerX = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
-
   return (
     <section id="overview" ref={targetRef} className="py-20 lg:py-32 relative z-20 bg-sap-900 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 mb-12 text-center">
         <h2 className="text-3xl lg:text-5xl font-bold mb-4 text-white">Why Partner with Sharvi?</h2>
         <p className="font-mono text-sm text-sap-300">Experience makes the difference.</p>
       </div>
-
-      {/* MOBILE: Stacked Cards View */}
       <div className="lg:hidden px-4 flex flex-col gap-6">
         <GlassCard className="p-8 border-l-4 border-red-900/50 bg-slate-950/80">
           <h3 className="text-xl font-bold text-slate-500 mb-4">Standard Vendors</h3>
@@ -487,7 +427,6 @@ const WhyUsComparer = () => {
             <li className="flex items-center gap-2"><div className="w-2 h-2 bg-red-900 rounded-full"></div>Fragmented accountability</li>
           </ul>
         </GlassCard>
-
         <div className="relative p-8 rounded-2xl bg-metro-gradient overflow-hidden shadow-neon">
           <div className="relative z-10 text-white">
             <h3 className="text-xl font-bold mb-4">The Sharvi Advantage</h3>
@@ -500,10 +439,7 @@ const WhyUsComparer = () => {
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         </div>
       </div>
-
-      {/* DESKTOP: Interactive Slider View */}
       <div className="hidden lg:block relative h-[600px] max-w-7xl mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-        {/* Layer 1: Standard Approach */}
         <div className="absolute inset-0 bg-slate-950 flex items-center justify-center p-12 grayscale brightness-50">
           <div className="text-left max-w-lg mr-auto">
             <h3 className="text-3xl font-bold text-slate-500 mb-4">Standard Vendors</h3>
@@ -514,8 +450,6 @@ const WhyUsComparer = () => {
             </ul>
           </div>
         </div>
-
-        {/* Layer 2: Sharvi Approach */}
         <motion.div
           className="absolute inset-0 bg-metro-gradient flex items-center justify-center p-12"
           style={{ clipPath: useTransform(dividerX, (x) => `polygon(${x} 0, 100% 0, 100% 100%, ${x} 100%)`) }}
@@ -530,8 +464,6 @@ const WhyUsComparer = () => {
           </div>
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         </motion.div>
-
-        {/* Divider */}
         <motion.div
           style={{ left: dividerX }}
           className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_30px_rgba(255,255,255,0.8)] z-30"
@@ -550,21 +482,18 @@ const MetricsAndAwards = () => {
     <section className="py-20 relative z-20 bg-sap-950 border-y border-white/5">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 items-center">
-
           <div className="text-center">
             <div className="font-heading italic text-6xl lg:text-7xl font-bold tracking-tighter mb-2 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500">
               17+
             </div>
             <p className="font-body font-bold text-xs lg:text-sm text-slate-400 uppercase tracking-wider">Years Team Experience</p>
           </div>
-
           <div className="text-center">
             <div className="font-heading italic text-6xl lg:text-7xl font-bold tracking-tighter mb-2 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500">
               24/7
             </div>
             <p className="font-body font-bold text-xs lg:text-sm text-slate-400 uppercase tracking-wider">AMS Support Coverage</p>
           </div>
-
           <div className="lg:col-span-2">
             <GlassCard className="flex flex-col sm:flex-row items-center gap-6 !bg-gradient-to-r !from-yellow-900/20 !to-transparent !border-yellow-500/20 text-center sm:text-left p-6">
               <div className="p-4 bg-yellow-500/10 rounded-full text-yellow-500 flex-shrink-0">
@@ -576,7 +505,6 @@ const MetricsAndAwards = () => {
               </div>
             </GlassCard>
           </div>
-
         </div>
       </div>
     </section>
@@ -595,7 +523,6 @@ const Footer = () => {
           INTEGRITY • TEAMWORK • EMPOWERMENT • SHARVI INFOTECH •
         </motion.div>
       </div>
-
       <div className="max-w-7xl mx-auto px-4 relative z-10 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 mb-16 lg:mb-24">
           <div>
@@ -623,7 +550,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center font-body text-xs text-slate-500 gap-4 text-center">
           <p>© {new Date().getFullYear()} Sharvi Infotech. All Rights Reserved.</p>
         </div>
@@ -631,8 +557,6 @@ const Footer = () => {
     </footer>
   )
 }
-
-// --- MAIN PAGE ASSEMBLY ---
 
 export default function Home() {
   return (

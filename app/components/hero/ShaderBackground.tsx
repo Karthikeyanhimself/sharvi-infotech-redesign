@@ -4,7 +4,6 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useRef, useMemo } from 'react';
 import * as THREE from 'three';
 
-// Fragment Shader: Creates a shifting, nebula-like data stream pattern
 const fragmentShader = `
 uniform float uTime;
 uniform vec2 uMouse;
@@ -12,7 +11,6 @@ uniform vec2 uResolution;
 
 varying vec2 vUv;
 
-// Simplex noise function (simplified for brevity)
 vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
 float snoise(vec2 v){
   const vec4 C = vec4(0.211324865405187, 0.366025403784439,
@@ -42,27 +40,22 @@ float snoise(vec2 v){
 
 void main() {
     vec2 uv = vUv;
-    
-    // Subtle mouse interaction
+
     float mouseDist = distance(uv, uMouse);
     float mouseInfluence = smoothstep(0.5, 0.0, mouseDist) * 0.1;
 
-    // Create moving noise layers
     float noise1 = snoise(uv * 3.0 + uTime * 0.1 + mouseInfluence);
     float noise2 = snoise(uv * 6.0 - uTime * 0.15);
     
     float combinedNoise = (noise1 + noise2) * 0.5;
 
-    // UPDATED: Enterprise Green/Teal Palette (Matches new text gradient)
     vec3 color1 = vec3(0.01, 0.03, 0.04); // Deepest Dark Green/Slate (Base)
     vec3 color2 = vec3(0.02, 0.4, 0.3);   // Emerald Green (Mid-tone)
     vec3 color3 = vec3(0.1, 0.8, 0.6);    // Bright Teal/Lime (Highlight)
 
-    // Mix colors based on noise pattern
     vec3 finalColor = mix(color1, color2, combinedNoise + 0.2);
     finalColor = mix(finalColor, color3, snoise(uv * 2.0 + uTime * 0.05) * 0.3);
     
-    // Darken edges (vignette)
     float vignette = smoothstep(1.2, 0.5, distance(uv, vec2(0.5)));
     
     gl_FragColor = vec4(finalColor * vignette, 1.0);
@@ -95,14 +88,13 @@ const ShaderPlane = () => {
         if (meshRef.current) {
             const material = meshRef.current.material as THREE.ShaderMaterial;
             material.uniforms.uTime.value = clock.getElapsedTime();
-            // Smooth mouse interpolation
             mouseRef.current.lerp(mouse.addScalar(1).divideScalar(2), 0.1);
             material.uniforms.uMouse.value.copy(mouseRef.current);
         }
     });
 
     return (
-        <mesh ref={meshRef} scale={[10, 10, 1]}> {/* Scale up to cover screen */}
+        <mesh ref={meshRef} scale={[10, 10, 1]}>
             <planeGeometry args={[2, 2]} />
             <shaderMaterial
                 fragmentShader={fragmentShader}

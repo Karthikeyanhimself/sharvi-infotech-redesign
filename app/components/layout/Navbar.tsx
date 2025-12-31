@@ -38,10 +38,8 @@ export const Navbar = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="fixed top-4 md:top-6 inset-x-0 z-50 flex flex-col items-center px-4 pointer-events-none"
         >
-            {/* Main Bar */}
             <GlassCard className="pointer-events-auto relative z-50 flex items-center justify-between px-6 py-3 md:px-8 md:py-4 w-full max-w-5xl !rounded-full !bg-sap-950/80 !border-white/10 shadow-2xl backdrop-blur-xl">
 
-                {/* Logo */}
                 <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2 group">
                     <div className="w-8 h-8 bg-metro-gradient rounded-md grid place-items-center shadow-neon group-hover:shadow-[0_0_30px_theme('colors.sap.500')] transition-shadow duration-500">
                         <div className="w-4 h-4 bg-sap-950 rotate-45"></div>
@@ -49,7 +47,6 @@ export const Navbar = () => {
                     <span className="text-lg md:text-xl font-bold tracking-tight text-white">SHARVI INFOTECH</span>
                 </Link>
 
-                {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-8 font-mono text-sm text-slate-300">
                     {navLinks.map((item) => (
                         <Link
@@ -63,7 +60,6 @@ export const Navbar = () => {
                     ))}
                 </nav>
 
-                {/* Desktop CTA */}
                 <a
                     href="mailto:sales@sharviinfotech.com"
                     className="hidden md:block px-6 py-2 text-sm font-mono border border-sap-500/30 rounded-full text-sap-300 hover:bg-sap-500/10 transition-colors"
@@ -71,7 +67,6 @@ export const Navbar = () => {
                     Contact Us
                 </a>
 
-                {/* Mobile Hamburger Button */}
                 <button
                     onClick={() => setIsOpen(!isOpen)}
                     className="md:hidden p-2 text-slate-300 hover:text-white transition-colors"
@@ -81,7 +76,6 @@ export const Navbar = () => {
                 </button>
             </GlassCard>
 
-            {/* Mobile Menu Dropdown */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div

@@ -3,9 +3,6 @@
 import { motion, useMotionValue, useSpring, useTransform, HTMLMotionProps } from "framer-motion";
 import { useRef } from "react";
 import { cn } from "@/lib/utils";
-
-// FIX: Change 'React.ButtonHTMLAttributes' to 'HTMLMotionProps<"button">'
-// This resolves the conflict between HTML drag events and Framer gestures.
 interface Props extends HTMLMotionProps<"button"> {
     children: React.ReactNode;
 }
@@ -21,13 +18,12 @@ export const MagneticButton = ({ children, className, ...props }: Props) => {
 
     const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
         const { clientX, clientY } = e;
-        // Safety check to ensure ref exists
         if (!ref.current) return;
 
         const { height, width, left, top } = ref.current.getBoundingClientRect();
         const middleX = clientX - (left + width / 2);
         const middleY = clientY - (top + height / 2);
-        x.set(middleX * 0.2); // Magnetic strength
+        x.set(middleX * 0.2);
         y.set(middleY * 0.2);
     };
 
@@ -53,7 +49,6 @@ export const MagneticButton = ({ children, className, ...props }: Props) => {
             <span className="relative z-10 flex items-center gap-2">
                 {children}
             </span>
-            {/* Glowing background effect */}
             <div className="absolute inset-0 -z-10 bg-gradient-to-r from-accent-purple to-sap-500 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
         </motion.button>
     );
