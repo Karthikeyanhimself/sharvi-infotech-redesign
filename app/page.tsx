@@ -111,12 +111,12 @@ const HeroSection = () => {
 
           <h1 className="leading-[1.1] mb-6 text-white text-center">
             {/* TOP LINE */}
-            <span className="text-6xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tighter block mb-4 md:mb-6 uppercase">
+            <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tighter block mb-4 md:mb-6 uppercase">
               Accelerating
             </span>
 
             {/* BOTTOM LINE: STATIC & ALIGNED */}
-            <div className="flex flex-wrap justify-center items-baseline gap-x-3 sm:gap-x-5 text-4xl sm:text-6xl md:text-7xl lg:text-8xl">
+            <div className="flex flex-wrap justify-center items-baseline gap-x-3 sm:gap-x-5 text-3xl sm:text-6xl md:text-7xl lg:text-8xl">
 
               {/* 1. SAP (Heading Font) */}
               {/* Added 'pr-2' to prevent the letter P from being cut off */}
