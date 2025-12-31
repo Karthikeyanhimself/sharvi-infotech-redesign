@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-    darkMode: "class", // FIX: Changed from ["class"] to "class"
+    darkMode: "class",
     content: [
         "./pages/**/*.{js,ts,jsx,tsx,mdx}",
         "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,39 +9,55 @@ const config: Config = {
     ],
     theme: {
         extend: {
-            fontFamily: {
-                sans: ["var(--font-space)", "sans-serif"],
-                mono: ["var(--font-mono)", "monospace"],
-            },
             colors: {
-                sap: {
-                    950: '#0a0e17',
-                    900: '#111827',
-                    800: '#1f2937',
-                    500: '#3b82f6',
-                    400: '#60a5fa',
-                    300: '#93c5fd',
+                border: "hsl(var(--border))",
+                input: "hsl(var(--input))",
+                ring: "hsl(var(--ring))",
+                background: "hsl(var(--background))",
+                foreground: "hsl(var(--foreground))",
+                primary: {
+                    DEFAULT: "hsl(var(--primary))",
+                    foreground: "hsl(var(--primary-foreground))",
+                },
+                secondary: {
+                    DEFAULT: "hsl(var(--secondary))",
+                    foreground: "hsl(var(--secondary-foreground))",
+                },
+                destructive: {
+                    DEFAULT: "hsl(var(--destructive))",
+                    foreground: "hsl(var(--destructive-foreground))",
+                },
+                muted: {
+                    DEFAULT: "hsl(var(--muted))",
+                    foreground: "hsl(var(--muted-foreground))",
                 },
                 accent: {
-                    purple: '#8b5cf6',
-                    cyan: '#06b6d4'
-                }
+                    DEFAULT: "hsl(var(--accent))",
+                    foreground: "hsl(var(--accent-foreground))",
+                },
+                popover: {
+                    DEFAULT: "hsl(var(--popover))",
+                    foreground: "hsl(var(--popover-foreground))",
+                },
+                card: {
+                    DEFAULT: "hsl(var(--card))",
+                    foreground: "hsl(var(--card-foreground))",
+                },
             },
-            backgroundImage: {
-                'glass-gradient': 'linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.1))',
-                'metro-gradient': 'linear-gradient(90deg, theme("colors.sap.500"), theme("colors.accent.purple"))',
-            },
-            boxShadow: {
-                'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
-                'neon': '0 0 20px theme("colors.sap.500"), 0 0 60px theme("colors.accent.purple")',
+            fontFamily: {
+                // UPDATED: Now using Outfit (Clean, Tech Sans-Serif)
+                heading: ["var(--font-outfit)", "sans-serif"],
+
+                fancy: ["var(--font-pinyon)", "cursive"],
+                body: ["var(--font-manrope)", "sans-serif"],
             },
             animation: {
-                marquee: 'marquee 25s linear infinite',
+                'infinite-scroll': 'scroll 60s linear infinite',
             },
             keyframes: {
-                marquee: {
-                    '0%': { transform: 'translateX(0%)' },
-                    '100%': { transform: 'translateX(-100%)' },
+                scroll: {
+                    '0%': { transform: 'translateX(0)' },
+                    '100%': { transform: 'translateX(-50%)' },
                 }
             }
         },

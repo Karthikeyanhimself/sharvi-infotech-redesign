@@ -1,25 +1,39 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
+import {
+  Outfit, // <--- NEW FONT (Replaces Cormorant)
+  Pinyon_Script,
+  Manrope,
+  Monsieur_La_Doulaise,
+  Aguafina_Script,
+  Ballet,
+  Mea_Culpa,
+  Fleur_De_Leah,
+  Lovers_Quarrel,
+  Italianno
+} from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { Analytics } from '@vercel/analytics/react';
-import SmoothScroll from "@/app/components/ui/SmoothScroll"; // Import the new component
+import SmoothScroll from "@/app/components/ui/SmoothScroll";
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space",
-  weight: ["300", "400", "500", "600", "700"],
-});
+// 1. BRAND FONTS
+// "Outfit" is excellent for modern tech headings
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit", weight: ["400", "500", "600", "700", "800"] });
+const pinyon = Pinyon_Script({ subsets: ["latin"], variable: "--font-pinyon", weight: "400" });
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", weight: ["300", "400", "500", "600", "700"] });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  weight: ["400"],
-});
+// 2. ANIMATION FONTS
+const monsieur = Monsieur_La_Doulaise({ subsets: ["latin"], variable: "--font-monsieur", weight: "400" });
+const aguafina = Aguafina_Script({ subsets: ["latin"], variable: "--font-aguafina", weight: "400" });
+const ballet = Ballet({ subsets: ["latin"], variable: "--font-ballet", weight: "400" });
+const meaCulpa = Mea_Culpa({ subsets: ["latin"], variable: "--font-mea", weight: "400" });
+const fleur = Fleur_De_Leah({ subsets: ["latin"], variable: "--font-fleur", weight: "400" });
+const lovers = Lovers_Quarrel({ subsets: ["latin"], variable: "--font-lovers", weight: "400" });
+const italianno = Italianno({ subsets: ["latin"], variable: "--font-italianno", weight: "400" });
 
 export const metadata: Metadata = {
-  title: "Sharvi Infotech | Global SAP Services & Digital Transformation",
-  description: "Accelerating SAP S/4HANA transformation with over 17 years of industry expertise. Specializing in Automotive, Manufacturing, and Mining sectors.",
+  title: "Sharvi Infotech | Global SAP Services",
+  description: "Accelerating SAP S/4HANA transformation.",
 };
 
 export default function RootLayout({
@@ -30,19 +44,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={cn(
-        spaceGrotesk.variable,
-        jetbrainsMono.variable,
-        "bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500/30 selection:text-indigo-200 overflow-x-hidden"
+        // Inject the new Outfit variable
+        outfit.variable, pinyon.variable, manrope.variable,
+        monsieur.variable, aguafina.variable, ballet.variable,
+        meaCulpa.variable, fleur.variable, lovers.variable, italianno.variable,
+        "font-sans min-h-screen antialiased selection:bg-rose-500/30 selection:text-rose-200 overflow-x-hidden"
       )}>
-        {/* Noise overlay */}
-        <div className="fixed inset-0 z-[9999] pointer-events-none opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-
-        {/* Wrap content in SmoothScroll */}
         <SmoothScroll>
           {children}
         </SmoothScroll>
-
-        <Analytics />
       </body>
     </html>
   );

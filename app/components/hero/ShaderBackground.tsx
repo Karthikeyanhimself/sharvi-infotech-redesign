@@ -51,14 +51,13 @@ void main() {
     float noise1 = snoise(uv * 3.0 + uTime * 0.1 + mouseInfluence);
     float noise2 = snoise(uv * 6.0 - uTime * 0.15);
     
-    // Combine noise for organic movement
     float combinedNoise = (noise1 + noise2) * 0.5;
-    
-    // Define enterprise colors (deep blues/purples)
-    vec3 color1 = vec3(0.05, 0.08, 0.15); // Sap 950ish
-    vec3 color2 = vec3(0.23, 0.51, 0.96); // Sap 500ish
-    vec3 color3 = vec3(0.54, 0.36, 0.96); // Accent Purple
-    
+
+    // UPDATED: Enterprise Green/Teal Palette (Matches new text gradient)
+    vec3 color1 = vec3(0.01, 0.03, 0.04); // Deepest Dark Green/Slate (Base)
+    vec3 color2 = vec3(0.02, 0.4, 0.3);   // Emerald Green (Mid-tone)
+    vec3 color3 = vec3(0.1, 0.8, 0.6);    // Bright Teal/Lime (Highlight)
+
     // Mix colors based on noise pattern
     vec3 finalColor = mix(color1, color2, combinedNoise + 0.2);
     finalColor = mix(finalColor, color3, snoise(uv * 2.0 + uTime * 0.05) * 0.3);

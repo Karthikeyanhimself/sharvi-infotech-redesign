@@ -38,9 +38,7 @@ const SolutionSection = ({
   index: number
 }) => {
   return (
-    // FIX ADDED: 'scroll-mt-28' ensures the Navbar doesn't cover the title when scrolling
     <section id={id} className="scroll-mt-28 relative flex flex-col lg:flex-row gap-8 lg:gap-24 py-12 lg:py-24 border-t border-white/5">
-      {/* Header: Sticky on Desktop, Static on Mobile */}
       <div className="lg:w-1/3 flex flex-col justify-start">
         <div className="relative lg:sticky lg:top-32">
           <motion.div
@@ -50,24 +48,21 @@ const SolutionSection = ({
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            {/* Huge Number */}
-            <span className="absolute -top-6 -left-4 text-6xl lg:text-9xl font-bold text-white/5 select-none pointer-events-none -z-10">
+            <span className="absolute -top-6 -left-4 text-6xl lg:text-9xl font-heading italic font-bold text-white/5 select-none pointer-events-none -z-10">
               0{index}
             </span>
 
             <div className="w-12 h-12 lg:w-16 lg:h-16 bg-sap-900/50 backdrop-blur-xl rounded-2xl flex items-center justify-center text-2xl lg:text-3xl text-sap-400 mb-4 lg:mb-6 border border-white/10 shadow-[0_0_30px_rgba(59,130,246,0.2)]">
               {icon}
             </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-4 lg:mb-6 tracking-tight text-white leading-tight">{title}</h2>
-            <p className="text-base lg:text-lg text-slate-400 font-mono leading-relaxed">{subtitle}</p>
+            <h2 className="font-heading italic text-4xl lg:text-6xl font-bold mb-4 lg:mb-6 tracking-tight text-white leading-tight">{title}</h2>
+            <p className="font-body font-medium text-base lg:text-lg text-slate-400 leading-relaxed">{subtitle}</p>
 
-            {/* Connector Line (Desktop Only) */}
             <div className="absolute left-6 lg:left-8 top-full h-[50vh] w-px bg-gradient-to-b from-sap-500/50 to-transparent mt-8 hidden lg:block"></div>
           </motion.div>
         </div>
       </div>
 
-      {/* Content: Scrollable */}
       <div className="lg:w-2/3 pt-4 lg:pt-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -88,10 +83,10 @@ const ProcessCard = ({ title, desc, stepNum }: { title: string, desc: string, st
 
     <GlassCard className="p-5 lg:p-6 transition-all duration-300 group-hover:-translate-y-1 group-hover:bg-sap-900/60">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-2">
-        <h4 className="text-lg lg:text-xl font-bold text-white group-hover:text-sap-300 transition-colors">{title}</h4>
-        <span className="text-xs font-mono text-white/20 uppercase tracking-widest">Step {stepNum}</span>
+        <h4 className="font-heading font-bold text-xl lg:text-2xl text-white group-hover:text-sap-300 transition-colors">{title}</h4>
+        <span className="text-xs font-body font-bold text-white/20 uppercase tracking-widest">Step {stepNum}</span>
       </div>
-      <p className="text-sm text-slate-400 font-mono leading-relaxed">{desc}</p>
+      <p className="font-body text-sm text-slate-400 leading-relaxed">{desc}</p>
     </GlassCard>
   </div>
 );
@@ -105,19 +100,36 @@ const HeroSection = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto text-center">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-[10px] sm:text-xs font-mono text-sap-300 uppercase tracking-wider">
+          {/* BADGE */}
+          <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-[10px] sm:text-xs font-body font-bold text-emerald-400 uppercase tracking-wider">
             EST. 2020 • HYDERABAD • GLOBAL SAP PARTNER
           </div>
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.1] mb-6 text-white">
-            ACCELERATING<br />
-            {/* UPDATED: Cyan/Teal gradient to match 'Global Rollouts' accent */}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-teal-500">
-              SAP TRANSFORMATION
+
+          <h1 className="leading-[1.1] mb-6 text-white text-center">
+            {/* TOP LINE */}
+            <span className="text-6xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tighter block mb-4 md:mb-6 uppercase">
+              Accelerating
             </span>
+
+            {/* BOTTOM LINE: STATIC & ALIGNED */}
+            <div className="flex flex-wrap justify-center items-baseline gap-x-3 sm:gap-x-5 text-4xl sm:text-6xl md:text-7xl lg:text-8xl">
+
+              {/* 1. SAP (Heading Font) */}
+              {/* Added 'pr-2' to prevent the letter P from being cut off */}
+              <span className="font-heading font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-lime-400 pr-2">
+                SAP
+              </span>
+
+              {/* 2. TRANSFORMATION (Italianno Font) */}
+              <span className="font-italianno text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-lime-400 pr-2 pb-1">
+                Transformation
+              </span>
+
+            </div>
           </h1>
         </motion.div>
 
@@ -125,10 +137,10 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="font-mono text-sm sm:text-lg text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed px-4"
+          className="font-body text-sm sm:text-lg text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed px-4"
         >
           We empower organizations with agile, customer-centric SAP ERP solutions.
-          From <strong>S/4HANA migrations</strong> to <strong>Global Rollouts</strong>,
+          From <strong className="text-white">S/4HANA migrations</strong> to <strong className="text-white">Global Rollouts</strong>,
           we engineer success.
         </motion.p>
 
@@ -138,20 +150,12 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.8, type: "spring" }}
         >
           <Link href="#solutions">
-            <MagneticButton className="mx-auto">
+            <MagneticButton className="mx-auto font-body font-bold tracking-wide">
               Explore Solutions
             </MagneticButton>
           </Link>
         </motion.div>
       </div>
-
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 font-mono text-[10px] sm:text-xs text-sap-300 tracking-widest uppercase opacity-80 whitespace-nowrap"
-      >
-        Scroll for Capabilities
-      </motion.div>
     </section>
   );
 }
@@ -167,7 +171,6 @@ const ServicesBento = () => {
     show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 80 } },
   };
 
-  // FIX ADDED: Added 'href' to map cards to specific Deep Dive sections
   const services = [
     {
       title: "SAP Implementation",
@@ -210,19 +213,18 @@ const ServicesBento = () => {
       icon: <FiTrendingUp className="w-8 h-8 text-emerald-400" />,
       desc: "Strategic integration for long-term goals.",
       features: ["Strategy", "Roadmaps"],
-      href: "#solutions", // Fallback to main section as no specific deep dive exists
+      href: "#solutions",
       cols: "md:col-span-3",
       rows: ""
     },
   ]
 
-  // FIX ADDED: scroll-mt-28 added to section ID
   return (
     <section id="expertise" className="scroll-mt-28 py-20 lg:py-32 px-4 relative z-20 bg-sap-950">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 lg:mb-20 text-center md:text-left">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-white">Our Expertise</h2>
-          <p className="font-mono text-sm lg:text-base text-sap-300">Precision engineering and strategic insight.</p>
+          <h2 className="font-heading italic text-5xl lg:text-7xl font-bold mb-4 text-white">Our Expertise</h2>
+          <p className="font-body text-base lg:text-lg text-sap-300">Precision engineering and strategic insight.</p>
         </div>
 
         <motion.div
@@ -233,9 +235,8 @@ const ServicesBento = () => {
           className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 auto-rows-[minmax(200px,auto)]"
         >
           {services.map((service, idx) => (
-            <motion.div key={idx} variants={itemVariants} className={cn(service.cols, service.rows, "h-full")}>
-              {/* FIX ADDED: Link now uses service.href instead of generic #solutions */}
-              <Link href={service.href} className="block h-full">
+            <motion.div key={idx} variants={itemVariants} className={cn(service.cols, service.rows, "h-full relative z-30")}>
+              <Link href={service.href} className="block h-full cursor-pointer">
                 <GlassCard hoverEffect className="h-full flex flex-col justify-between group relative overflow-hidden p-6 lg:p-8">
                   <div>
                     <div className="flex justify-between items-start mb-6">
@@ -245,13 +246,13 @@ const ServicesBento = () => {
                       </div>
                     </div>
 
-                    <h3 className="text-xl lg:text-2xl font-bold mb-3 text-white">{service.title}</h3>
-                    <p className="font-mono text-xs lg:text-sm text-slate-400 mb-6 leading-relaxed">{service.desc}</p>
+                    <h3 className="font-heading font-bold text-2xl lg:text-3xl mb-3 text-white">{service.title}</h3>
+                    <p className="font-body text-sm text-slate-400 mb-6 leading-relaxed">{service.desc}</p>
 
                     {service.features && (
                       <div className="space-y-2 border-t border-white/5 pt-4">
                         {service.features.map((feat, i) => (
-                          <div key={i} className="flex items-center gap-2 text-[10px] lg:text-xs font-mono text-sap-300">
+                          <div key={i} className="flex items-center gap-2 text-[10px] lg:text-xs font-body font-medium text-sap-300">
                             <FiCheckCircle className="text-sap-500 text-[10px]" />
                             {feat}
                           </div>
@@ -272,22 +273,50 @@ const ServicesBento = () => {
 
 const SolutionsDeepDive = () => {
   return (
-    // FIX ADDED: scroll-mt-28 added here too
     <div id="solutions" className="scroll-mt-28 bg-sap-950 relative z-20">
       <div className="max-w-7xl mx-auto px-4 pt-20 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-[10px] font-mono text-sap-300 mb-6"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-[10px] font-body font-bold text-sap-300 mb-6"
         >
           <FiZap className="text-yellow-400" />
           ENGINEERED FOR VELOCITY
         </motion.div>
-        <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-          DETAILED <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-100 via-yellow-300 to-yellow-600">METHODOLOGIES</span>
-        </h2>
-        <p className="text-slate-400 font-mono text-sm md:text-base max-w-2xl mx-auto">
+        <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
+          {/* HEADING CONTAINER */}
+          <h2 className="leading-[1.1] mb-8 text-center">
+
+            {/* FLEX ROW: Aligns both words on the same baseline */}
+            <div className="flex flex-wrap justify-center items-baseline gap-x-3 sm:gap-x-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+
+              {/* 1. DETAILED (Serif Italic) 
+          - pr-2: prevents the italic 'D' from being cut on the right
+      */}
+              <span className="font-heading font-bold italic tracking-tighter text-white pr-2">
+                DETAILED
+              </span>
+
+              {/* 2. METHODOLOGIES (Script)
+          - pr-2: prevents the 's' tail from being cut
+          - pb-2: adds padding at the bottom so the loops of 'g' and 'y' aren't chopped
+      */}
+              <span className="font-italianno text-yellow-400 pr-2 pb-2">
+                Methodologies
+              </span>
+
+            </div>
+          </h2>
+
+          {/* CAPTION
+      - Added 'mt-2' for a little extra breathing room if needed
+  */}
+          <p className="font-body text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto mt-2">
+            Comprehensive SAP ecosystems designed for scale. From initial blueprint to 24/7 automation support.
+          </p>
+        </div>
+        <p className="text-slate-400 font-body font-medium text-sm md:text-base max-w-2xl mx-auto">
           Comprehensive SAP ecosystems designed for scale. From initial blueprint to 24/7 automation support.
         </p>
       </div>
@@ -319,10 +348,10 @@ const SolutionsDeepDive = () => {
         >
           <div className="grid grid-cols-1 gap-6">
             <GlassCard className="p-6 border-l-4 border-l-accent-purple">
-              <h3 className="text-xl font-bold mb-4 text-white">Why Migrate?</h3>
+              <h3 className="font-heading italic font-bold text-2xl mb-4 text-white">Why Migrate?</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {["Zero Data Loss", "Minimized Downtime", "Hybrid Cloud", "Legacy Archiving"].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 font-mono text-xs text-slate-300">
+                  <div key={i} className="flex items-center gap-3 font-body font-medium text-xs text-slate-300">
                     <FiCheckCircle className="text-accent-purple flex-shrink-0" /> {item}
                   </div>
                 ))}
@@ -346,15 +375,15 @@ const SolutionsDeepDive = () => {
         >
           <div className="grid grid-cols-1 gap-4">
             <GlassCard className="p-6">
-              <h4 className="text-lg font-bold text-accent-cyan mb-2">Global Template</h4>
-              <p className="text-xs text-slate-400 font-mono">"Master Kernel" configuration ensuring 80% standardization.</p>
+              <h4 className="font-heading font-bold text-xl text-accent-cyan mb-2">Global Template</h4>
+              <p className="text-xs text-slate-400 font-body">"Master Kernel" configuration ensuring 80% standardization.</p>
               <div className="mt-4 h-1 w-full bg-accent-cyan/20 rounded-full overflow-hidden">
                 <div className="h-full w-3/4 bg-accent-cyan"></div>
               </div>
             </GlassCard>
             <GlassCard className="p-6">
-              <h4 className="text-lg font-bold text-yellow-400 mb-2">Local Compliance</h4>
-              <p className="text-xs text-slate-400 font-mono">Adapting 20% for local tax & legal requirements.</p>
+              <h4 className="font-heading font-bold text-xl text-yellow-400 mb-2">Local Compliance</h4>
+              <p className="text-xs text-slate-400 font-body">Adapting 20% for local tax & legal requirements.</p>
               <div className="mt-4 h-1 w-full bg-yellow-400/20 rounded-full overflow-hidden">
                 <div className="h-full w-1/4 bg-yellow-400"></div>
               </div>
@@ -373,20 +402,20 @@ const SolutionsDeepDive = () => {
           <GlassCard className="p-6">
             <div className="flex flex-wrap gap-2 mb-8">
               {["Incident Mgmt", "Change Mgmt", "Performance Tuning"].map((tag) => (
-                <span key={tag} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono text-sap-300">
+                <span key={tag} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-body font-bold text-sap-300">
                   {tag}
                 </span>
               ))}
             </div>
             <div className="bg-sap-950/50 rounded-xl p-4 border border-white/5 flex items-center justify-between">
               <div>
-                <h4 className="text-2xl font-bold text-white mb-1">99.9%</h4>
-                <p className="text-[10px] font-mono text-slate-500 uppercase">SLA Compliance</p>
+                <h4 className="font-heading text-3xl font-bold text-white mb-1">99.9%</h4>
+                <p className="text-[10px] font-body font-bold text-slate-500 uppercase">SLA Compliance</p>
               </div>
               <div className="h-12 w-px bg-white/10"></div>
               <div>
-                <h4 className="text-2xl font-bold text-white mb-1">&lt;15m</h4>
-                <p className="text-[10px] font-mono text-slate-500 uppercase">Response Time</p>
+                <h4 className="font-heading text-3xl font-bold text-white mb-1">&lt;15m</h4>
+                <p className="text-[10px] font-body font-bold text-slate-500 uppercase">Response Time</p>
               </div>
             </div>
           </GlassCard>
@@ -401,35 +430,28 @@ const IndustryTicker = () => {
     "AUTOMOTIVE", "CHEMICALS", "INDUSTRIAL MANUFACTURING", "STEEL & CEMENT", "MINING", "E-MOBILITY"
   ];
 
-  // Duplicate content enough times to ensure seamless looping without gaps
   const content = [...industries, ...industries, ...industries, ...industries];
 
   return (
-    // FIX 1: 'scroll-mt-32' adds invisible padding so the Navbar doesn't cover the text when clicked
     <section id="industries" className="scroll-mt-32 py-12 bg-sap-900 border-y border-white/5 overflow-hidden relative">
-
-      {/* Mask creates the fade effect on the edges */}
       <div className="flex max-w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-
-        {/* FIX 2: Pure CSS Animation (GPU) prevents the "stop-and-go" glitch */}
         <div className="flex gap-16 animate-infinite-scroll whitespace-nowrap pr-16">
           {content.map((ind, i) => (
-            <div key={i} className="flex-shrink-0 flex items-center gap-4 text-2xl sm:text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/90 to-white/50">
-              {ind} <span className="text-sap-500">•</span>
+            <div key={i} className="flex-shrink-0 flex items-center gap-4 text-3xl sm:text-5xl md:text-7xl font-heading font-bold italic text-transparent bg-clip-text bg-gradient-to-b from-white/90 to-white/50">
+              {ind} <span className="text-sap-500 not-italic">•</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Define the smooth animation directly here */}
       <style jsx>{`
         .animate-infinite-scroll {
           animation: scroll 60s linear infinite;
-          will-change: transform; /* Hint to browser to use GPU */
+          will-change: transform;
         }
         @keyframes scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); } /* Move exactly half-way then loop */
+          100% { transform: translateX(-50%); }
         }
       `}</style>
     </section>
@@ -440,18 +462,16 @@ const WhyUsComparer = () => {
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start end", "end start"],
+    offset: ["start 80%", "end 20%"],
   });
 
-  // NEW: Add spring physics to make the slider glide smoothly
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
+    stiffness: 300,
     damping: 30,
     restDelta: 0.001
   });
 
-  // Use the smoothed progress instead of the raw scrollYProgress
-  const dividerX = useTransform(smoothProgress, [0.2, 0.8], ["0%", "100%"]);
+  const dividerX = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <section id="overview" ref={targetRef} className="py-20 lg:py-32 relative z-20 bg-sap-900 overflow-hidden">
@@ -535,17 +555,17 @@ const MetricsAndAwards = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 items-center">
 
           <div className="text-center">
-            <div className="text-5xl lg:text-6xl font-bold tracking-tighter mb-2 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500">
+            <div className="font-heading italic text-6xl lg:text-7xl font-bold tracking-tighter mb-2 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500">
               17+
             </div>
-            <p className="font-mono text-xs lg:text-sm text-slate-400 uppercase tracking-wider">Years Team Experience</p>
+            <p className="font-body font-bold text-xs lg:text-sm text-slate-400 uppercase tracking-wider">Years Team Experience</p>
           </div>
 
           <div className="text-center">
-            <div className="text-5xl lg:text-6xl font-bold tracking-tighter mb-2 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500">
+            <div className="font-heading italic text-6xl lg:text-7xl font-bold tracking-tighter mb-2 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500">
               24/7
             </div>
-            <p className="font-mono text-xs lg:text-sm text-slate-400 uppercase tracking-wider">AMS Support Coverage</p>
+            <p className="font-body font-bold text-xs lg:text-sm text-slate-400 uppercase tracking-wider">AMS Support Coverage</p>
           </div>
 
           <div className="lg:col-span-2">
@@ -554,8 +574,8 @@ const MetricsAndAwards = () => {
                 <FiAward className="w-8 h-8 lg:w-10 lg:h-10" />
               </div>
               <div>
-                <h4 className="text-lg lg:text-xl font-bold text-yellow-100">Telangana's Biggest Brand 2024</h4>
-                <p className="text-xs lg:text-sm text-yellow-200/60 font-mono mt-1">Recognized as "Trendsetter" in SAP Services</p>
+                <h4 className="font-heading font-bold text-xl lg:text-2xl text-yellow-100">Telangana's Biggest Brand 2024</h4>
+                <p className="text-xs lg:text-sm text-yellow-200/60 font-body font-medium mt-1">Recognized as "Trendsetter" in SAP Services</p>
               </div>
             </GlassCard>
           </div>
@@ -573,7 +593,7 @@ const Footer = () => {
         <motion.div
           animate={{ x: ["0%", "-50%"] }}
           transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
-          className="text-[4rem] md:text-[8rem] font-bold leading-none tracking-tighter text-transparent -webkit-text-stroke-1 md:-webkit-text-stroke-2 text-stroke-white"
+          className="font-heading italic text-[4rem] md:text-[8rem] font-bold leading-none tracking-tighter text-transparent -webkit-text-stroke-1 md:-webkit-text-stroke-2 text-stroke-white"
         >
           INTEGRITY • TEAMWORK • EMPOWERMENT • SHARVI INFOTECH •
         </motion.div>
@@ -582,15 +602,15 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 relative z-10 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 mb-16 lg:mb-24">
           <div>
-            <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-white">Ready for your Digital Transformation?</h2>
+            <h2 className="font-heading italic text-3xl lg:text-5xl font-bold mb-8 text-white">Ready for your Digital Transformation?</h2>
             <MagneticButton onClick={() => window.location.href = 'mailto:careers@sharviinfotech.com'}>
               Contact Our Experts
             </MagneticButton>
           </div>
-          <div className="grid grid-cols-2 gap-8 font-mono text-sm text-slate-400">
+          <div className="grid grid-cols-2 gap-8 font-body text-sm text-slate-400">
             <div>
-              <h4 className="text-white mb-4 uppercase tracking-wider">Company</h4>
-              <ul className="space-y-2">
+              <h4 className="text-white mb-4 uppercase tracking-wider font-bold">Company</h4>
+              <ul className="space-y-2 font-medium">
                 <li><a href="#overview" className="hover:text-white">About Us</a></li>
                 <li><Link href="#solutions" className="hover:text-white">Solutions</Link></li>
                 <li><a href="#careers" className="hover:text-white">Careers</a></li>
@@ -598,8 +618,8 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h4 className="text-white mb-4 uppercase tracking-wider">Contact</h4>
-              <ul className="space-y-2">
+              <h4 className="text-white mb-4 uppercase tracking-wider font-bold">Contact</h4>
+              <ul className="space-y-2 font-medium">
                 <li>Hyderabad, Telangana</li>
                 <li><a href="mailto:careers@sharviinfotech.com" className="text-sap-400 hover:underline">careers@sharviinfotech.com</a></li>
               </ul>
@@ -607,7 +627,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center font-mono text-xs text-slate-500 gap-4 text-center">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center font-body text-xs text-slate-500 gap-4 text-center">
           <p>© {new Date().getFullYear()} Sharvi Infotech. All Rights Reserved.</p>
         </div>
       </div>
