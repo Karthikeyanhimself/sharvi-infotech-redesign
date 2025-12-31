@@ -316,9 +316,6 @@ const SolutionsDeepDive = () => {
             Comprehensive SAP ecosystems designed for scale. From initial blueprint to 24/7 automation support.
           </p>
         </div>
-        <p className="text-slate-400 font-body font-medium text-sm md:text-base max-w-2xl mx-auto">
-          Comprehensive SAP ecosystems designed for scale. From initial blueprint to 24/7 automation support.
-        </p>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 pb-20">
