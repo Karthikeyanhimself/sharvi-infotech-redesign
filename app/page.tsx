@@ -565,7 +565,7 @@ const Footer = () => {
                   Unofficial Redesign by
                 </span>
                 <a
-                  href="YOUR_PORTFOLIO_LINK_HERE"
+                  href="https://karthikeyanhimself.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   // UPDATED: Electric Cyan to Vivid Blue Gradient
